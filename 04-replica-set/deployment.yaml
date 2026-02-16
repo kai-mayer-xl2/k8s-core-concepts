@@ -2,16 +2,22 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: 02-deployment
+  name: 04-replica-set
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: podinfo-deployment
-  namespace: 02-deployment
+  namespace: 04-replica-set
   labels:
     app: podinfo
 spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   selector:
     matchLabels:
       app: podinfo
@@ -23,8 +29,6 @@ spec:
       containers:
         - name: podinfo
           image: stefanprodan/podinfo:latest
-          ports:
-            - containerPort: 80
           env:
             - name: PODINFO_UI_MESSAGE
-              value: "Hello from Deployment!"
+              value: "Hello from ReplicaSet!"

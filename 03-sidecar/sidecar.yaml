@@ -12,7 +12,6 @@ metadata:
   labels:
     app: podinfo
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: podinfo
