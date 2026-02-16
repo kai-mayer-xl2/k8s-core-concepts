@@ -1,0 +1,52 @@
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: 05-config-map
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: podinfo-config
+  namespace: 05-config-map
+data:
+  PODINFO_UI_MESSAGE: "Hello from ConfigMap!"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: podinfo-config-files
+  namespace: 05-config-map
+data:
+  hello.txt: |
+    Hello from ConfigMap!
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podinfo-deployment
+  namespace: 05-config-map
+  labels:
+    app: podinfo
+spec:
+  selector:
+    matchLabels:
+      app: podinfo
+  template:
+    metadata:
+      labels:
+        app: podinfo
+    spec:
+      containers:
+        - name: podinfo
+          image: stefanprodan/podinfo:latest
+          envFrom:
+            - configMapRef:
+                name: podinfo-config
+          volumeMounts:
+            - name: config-volume
+              mountPath: /podinfo
+      volumes:
+        - name: config-volume
+          configMap:
+            name: podinfo-config-files
