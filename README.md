@@ -13,7 +13,7 @@ Tools to install:
 ## Setup a cluster
 
 ```
-k3d cluster create -p "80:80@loadbalancer" -p "443:443@loadbalancer" --k3s-arg "--disable=traefik@server:*" --k3s-arg "--disable=local-storage@server:*" local-k8s
+k3d cluster create -p "80:80@loadbalancer" -p "443:443@loadbalancer" --k3s-arg "--disable=traefik@server:*" local-k8s
 ```
 
 ## Destroy the cluster
