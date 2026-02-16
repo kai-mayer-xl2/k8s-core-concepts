@@ -1,0 +1,31 @@
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: 02-deployment
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podinfo-deployment
+  namespace: 02-deployment
+  labels:
+    app: podinfo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: podinfo
+  template:
+    metadata:
+      labels:
+        app: podinfo
+    spec:
+      containers:
+        - name: podinfo
+          image: stefanprodan/podinfo:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: PODINFO_UI_MESSAGE
+              value: "Hello from Deployment!"
