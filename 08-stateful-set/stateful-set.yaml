@@ -1,0 +1,44 @@
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: 08-stateful-set
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: podinfo-stateful-set
+  namespace: 08-stateful-set
+  labels:
+    app: podinfo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: podinfo
+  template:
+    metadata:
+      labels:
+        app: podinfo
+    spec:
+      containers:
+        - name: podinfo
+          image: stefanprodan/podinfo:latest
+          volumeMounts:
+            - name: pvc-volume
+              mountPath: /data
+      volumes:
+        - name: pvc-volume
+          persistentVolumeClaim:
+            claimName: podinfo-pvc
+
+  volumeClaimTemplates:
+    - metadata:
+        name: pvc-volume
+      spec:
+        storageClassName: local-path
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 200Mi
