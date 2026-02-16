@@ -1,0 +1,10 @@
+# see: https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
+
+ingressRoute:
+  dashboard:
+    # -- Create an IngressRoute for the dashboard
+    enabled: true
+    matchRule: Host(`traefik.localhost`)
+    entryPoints: 
+      - "web"
+      - "websecure"

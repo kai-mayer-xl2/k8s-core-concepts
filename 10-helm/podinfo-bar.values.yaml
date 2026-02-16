@@ -1,0 +1,11 @@
+ui:
+  color: "#4abf1f"
+  message: "Bar instance of Podinfo"
+
+ingress:
+  enabled: true
+  hosts:
+    - host: bar.localhost
+      paths:
+        - path: /
+          pathType: ImplementationSpecific

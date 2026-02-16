@@ -1,0 +1,11 @@
+ui:
+  color: "#bf1f96"
+  message: "Foo instance of Podinfo"
+
+ingress:
+  enabled: true
+  hosts:
+    - host: foo.localhost
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
