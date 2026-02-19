@@ -12,4 +12,4 @@ kubectl delete -f ingress.yaml
 kubectl port-forward service/podinfo-service --namespace 09-ingress 8080:80
 ```
 
-_An Ingress Controller is missing to serve request. Try opening http://localhost:80_
+_An Ingress Controller is missing to serve request. Try opening http://localhost:8080_

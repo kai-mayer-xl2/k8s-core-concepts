@@ -27,3 +27,5 @@ _The helm chart can also expressed as rendered template_
 ```
 helm template -f podinfo-foo.values.yaml --create-namespace --namespace 10-helm foo-podinfo oci://ghcr.io/stefanprodan/charts/podinfo > podinfo-foo.yaml
 ```
+
+_Try opening http://foo.localhost:80 or http://bar.localhost:80_
