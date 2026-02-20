@@ -10,6 +10,8 @@ Tools to install:
 - helm
 - docker
 
+See: [k8s-core-concepts.pdf](./k8s-core-concepts.pdf)
+
 ## Setup a cluster
 
 ```
